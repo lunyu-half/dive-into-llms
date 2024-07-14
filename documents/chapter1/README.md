@@ -103,20 +103,68 @@ python run_classification.py \
     --train_file data/train.csv \
     --validation_file data/val.csv \
     --test_file data/test.csv \
-    --shuffle_train_dataset \
+    --shuffle_train_dataset true \
     --metric_name accuracy \
     --text_column_name "text" \
     --text_column_delimiter "\n" \
     --label_column_name "target" \
-    --do_train \
-    --do_eval \
-    --do_predict \
+    --do_train yes \
+    --do_eval yes \
+    --do_predict yes \
     --max_seq_length 512 \
     --per_device_train_batch_size 32 \
     --learning_rate 2e-5 \
     --num_train_epochs 1 \
     --output_dir experiments/
 ```
+
+在windows 系统上，如果使用`powershell`执行，我们需要 **“`”**符号替换反斜杠（**“\”**）:
+
+``` powershell
+python run_classification.py `
+    --model_name_or_path bert-base-uncased `
+    --train_file data\train.csv `
+    --validation_file data\val.csv `
+    --test_file data\test.csv `
+    --shuffle_train_dataset true `
+    --metric_name accuracy `
+    --text_column_name "text" `
+    --text_column_delimiter "\n" `
+    --label_column_name "target" `
+    --do_train yes `
+    --do_eval yes `
+    --do_predict yes `
+    --max_seq_length 512 `
+    --per_device_train_batch_size 32 `
+    --learning_rate 2e-5 `
+    --num_train_epochs 1 `
+    --output_dir experiments\
+```
+
+如果使用`CMD`窗口执行，我需要用**“^”**替换替换反斜杠（**“\”**）:
+
+``` cmd
+call python run_classification.py ^
+    --model_name_or_path bert-base-uncased ^
+    --train_file data\train.csv ^
+    --validation_file data\val.csv ^
+    --test_file data\test.csv ^
+    --shuffle_train_dataset true ^
+    --metric_name accuracy ^
+    --text_column_name "text" ^
+    --text_column_delimiter ^\n ^
+    --label_column_name "target" ^
+    --do_train yes ^
+    --do_eval yes ^
+    --do_predict yes ^
+    --max_seq_length 512 ^
+    --per_device_train_batch_size 32 ^
+    --learning_rate 2e-5 ^
+    --num_train_epochs 1 ^
+    --output_dir experiments\
+```
+
+使用 `call` 确保在命令执行之后，环境变量会被正确的更新。
 
 若出现报错或卡住，通常是网络问题：
 
